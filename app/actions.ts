@@ -16,3 +16,5 @@ export async function hideBanner() {
 
   revalidatePath('/', 'layout')
 }
+- name: Claude Code Action Official
+  uses: anthropics/claude-code-action@v1
