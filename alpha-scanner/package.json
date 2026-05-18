@@ -1,0 +1,15 @@
+{
+  "name": "alpha-scanner",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Live crypto momentum scanner — Bloomberg-terminal aesthetic mobile-first.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}
