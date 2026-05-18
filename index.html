@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Real-time crypto momentum scanner — gainers, trending, low cap, volume surges" />
+  <title>alpha::scnr</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Major+Mono+Display&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header id="header">
+      <div class="header-inner">
+        <div class="logo" aria-label="Alpha Scanner">alpha::scnr</div>
+        <div class="header-right">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span class="live-label">LIVE</span>
+          <span id="timestamp" class="timestamp">--</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Ticker -->
+    <div id="ticker-bar" role="marquee" aria-label="Top movers ticker">
+      <div id="ticker-track" class="ticker-track"></div>
+    </div>
+
+    <!-- Tabs -->
+    <nav id="tabs-nav" aria-label="Scanner tabs">
+      <div class="tabs-inner" role="tablist">
+        <button class="tab-btn active" role="tab" data-tab="gainers" aria-selected="true">
+          GAINERS <span class="tab-badge" id="badge-gainers">0</span>
+        </button>
+        <button class="tab-btn" role="tab" data-tab="trending" aria-selected="false">
+          TRENDING <span class="tab-badge" id="badge-trending">0</span>
+        </button>
+        <button class="tab-btn" role="tab" data-tab="lowcap" aria-selected="false">
+          LOW CAP <span class="tab-badge" id="badge-lowcap">0</span>
+        </button>
+        <button class="tab-btn" role="tab" data-tab="volume" aria-selected="false">
+          VOL SURGE <span class="tab-badge" id="badge-volume">0</span>
+        </button>
+        <button class="tab-btn" role="tab" data-tab="losers" aria-selected="false">
+          LOSERS <span class="tab-badge" id="badge-losers">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Filter chips -->
+    <div id="filter-bar" role="toolbar" aria-label="Filter by chain or category">
+      <div class="filter-inner">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="solana">Solana</button>
+        <button class="filter-chip" data-filter="bnb">BNB</button>
+        <button class="filter-chip" data-filter="ethereum">Ethereum</button>
+        <button class="filter-chip" data-filter="base">Base</button>
+        <button class="filter-chip" data-filter="memes">Memes</button>
+        <button class="filter-chip" data-filter="ai">AI</button>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <main id="main-content" role="main">
+      <div id="coin-list" aria-live="polite" aria-atomic="false"></div>
+      <div id="error-state" class="error-state hidden" role="alert">
+        <div class="error-icon">⚠</div>
+        <div class="error-msg">Failed to load data</div>
+        <button id="retry-btn" class="retry-btn">RETRY</button>
+      </div>
+      <div id="loading-state" class="loading-state hidden" aria-label="Loading">
+        <div class="loading-spinner"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Detail modal -->
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Coin detail">
+    <div id="modal-sheet" class="modal-sheet">
+      <button id="modal-close" class="modal-close" aria-label="Close detail">×</button>
+      <div id="modal-content" class="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Floating refresh button -->
+  <button id="refresh-btn" class="refresh-btn" aria-label="Refresh data">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="23 4 23 10 17 10"></polyline>
+      <polyline points="1 20 1 14 7 14"></polyline>
+      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+    </svg>
+  </button>
+
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

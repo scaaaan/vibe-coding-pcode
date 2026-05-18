@@ -1,49 +1,61 @@
-# Vibe Coding Platform
+# alpha::scnr
 
-An end-to-end coding platform where users enter text prompts and an AI agent generates full-stack applications in a sandboxed environment with live preview, file explorer, and command logs.
+Real-time crypto momentum scanner. Tracks gainers, trending coins, low-cap movers, volume surges, and losers — all powered by CoinGecko's free API with zero key required.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-description=A+full-stack+coding+platform+built+with+Vercel%27s+AI+Cloud%2C+AI+SDK%2C+and+Next.js.&demo-image=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Fv1754588832%2FOSSvibecodingplatform%2Fscreenshot.png&demo-title=Vibe+Coding+Platform&demo-url=https%3A%2F%2Fvercel.fyi%2Fvibes&project-name=Vibe+Coding+Platform&repository-name=vibe-coding-platform&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fapps%2Fvibe-coding-platform&from=vibe-coding-platform-app)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/scaaaan/vibe-coding-pcode/tree/main/alpha-scanner)
 
-## Features
-
-- Multi-model support via AI Gateway (Claude, GPT, Grok)
-- Secure code execution with Vercel Sandbox
-- Real-time live preview of generated apps
-- File explorer for browsing project files
-- Command logs and error monitoring
-- One-click deploy to Vercel
-
-## Tech Stack
-
-- [Next.js](https://nextjs.org) with Turbopack
-- [AI SDK](https://ai-sdk.dev) v6
-- [Vercel AI Gateway](https://vercel.com/docs/ai-gateway)
-- [Vercel Sandbox](https://vercel.com/docs/vercel-sandbox)
-- [Tailwind CSS](https://tailwindcss.com)
-- [shadcn/ui](https://ui.shadcn.com)
-
-## Getting Started
-
-### Run Locally
+## Quick Start
 
 ```bash
-pnpm install
-pnpm dev
+npm install && npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open http://localhost:3000
 
-## Supported Models
-
-- Claude Opus 4.6
-- Claude Sonnet 4.6
-- GPT-5.3 Codex
-- Grok 4.1 Reasoning
-
-## Deploy
-
-Click the deploy button above or run:
+## Build
 
 ```bash
-vc deploy
+npm run build    # produces dist/
+npm run preview  # local preview of production build
 ```
+
+## Deploy to Vercel
+
+```bash
+npm i -g vercel
+vercel --cwd alpha-scanner
+```
+
+Or push the repo and import on vercel.com — zero config required.
+
+## API Rate Limits
+
+- **CoinGecko Free**: ~10–30 req/min. The app fetches once per 90s and slices all views client-side, so a single page session uses ~1 req/90s.
+- **DexScreener**: No documented limit; used only for the DEX pairs tab (if enabled).
+
+## Customization
+
+### Adding a New Tab
+
+1. Add a key to `state.data` in `src/app.js`
+2. Add a tab config object in `src/ui/tabs.js`
+3. Implement the filter function in `src/filters.js`
+4. Add its render logic in `src/ui/coinList.js`
+
+### Adding a New Filter Chip
+
+Edit `FILTERS` in `src/filters.js`:
+
+```js
+export const FILTERS = [
+  { id: 'all', label: 'All' },
+  { id: 'mychain', label: 'MyChain', platforms: ['mychain'] },
+  // ...
+];
+```
+
+For category keywords, add a `keywords` array instead of `platforms`.
+
+## Disclaimer
+
+This tool is for informational purposes only. Nothing here constitutes financial advice. Crypto markets are highly volatile — always do your own research before trading.
